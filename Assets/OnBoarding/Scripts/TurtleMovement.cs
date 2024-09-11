@@ -5,7 +5,7 @@ using UnityEngine;
 public class TurtleMovement : MonoBehaviour
 {
     protected Rigidbody2D rb;
-    [SerializeField] protected bool isRightMovement = true;
+    [SerializeField] public bool isRightMovement = true;
     [SerializeField] protected float speed = 5;
     
     // Start is called before the first frame update

@@ -9,25 +9,40 @@ public class PlayerBehavior : MonoBehaviour
 
     void Update()
     {
+        Vector2 input = InputMovementPC();
+        transform.Translate(Vector2.up * input.y * moveSpeed * Time.deltaTime);
+        transform.Rotate(0, 0, rotationSpeed*-input.x);
+    }
+    Vector2 InputMovementMobile(){
+        Vector2 input = Vector2.zero;
+        // Capturar input desde el celular
+        return input;
+    }
+    Vector2 InputMovementPC()
+    {
+        Vector2 input = Vector2.zero;
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            transform.Translate(Vector2.up * moveSpeed * Time.deltaTime);
+            input.y = 1;
         }
+
         if (Input.GetKey(KeyCode.DownArrow))
         {
-            transform.Translate(Vector2.down * moveSpeed * Time.deltaTime);
+            input.y = -1;
         }
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            transform.Rotate(0, 0, rotationSpeed);
+            input.x = -1;
         }
+
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            transform.Rotate(0, 0, -rotationSpeed);
+            input.x = 1;
         }
-    }
 
+        return input;
+    }
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Turtle"))
